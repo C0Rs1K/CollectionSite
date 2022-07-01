@@ -7,15 +7,18 @@ namespace SuperSite.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly ItemsRepository _repository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ItemsRepository repository)
     {
         _logger = logger;
+        _repository = repository;
     }
 
     public IActionResult Index()
     {
-        return View();
+        var items = _repository.Get();
+        return View(items);
     }
 
     public IActionResult Privacy()

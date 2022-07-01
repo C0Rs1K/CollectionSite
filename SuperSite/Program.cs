@@ -2,6 +2,7 @@
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<SuperSite.Models.ItemsRepository>();
 
 var app = builder.Build();
 
