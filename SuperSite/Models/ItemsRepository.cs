@@ -1,13 +1,16 @@
-using System.Text.Json;
-
 namespace SuperSite.Models;
 
 public class ItemsRepository
 {
+    private readonly CollectionContext _context;
+
+    public ItemsRepository(CollectionContext context)
+    {
+        _context = context;
+    }
+
     public IEnumerable<Item> Get()
     {
-        using var file = System.IO.File.OpenRead("Data/collection.json");
-
-        return JsonSerializer.Deserialize<IEnumerable<Item>>(file)!;
+        return _context.CollectionItems;
     }
 }
