@@ -21,6 +21,12 @@ public class HomeController : Controller
         return View(items);
     }
 
+    [HttpGet("api/items")]
+    public ActionResult<IEnumerable<Item>> Get()
+    {
+        return Ok(_repository.Get());
+    }
+
     public IActionResult Privacy()
     {
         return View();
